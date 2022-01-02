@@ -50,7 +50,8 @@ function displayFinancials(people) {
 
   for (let x = 0; x < burdenElementList.length; x++) {
     console.log(people[x].burden);
-    burdenElementList[x].textContent = Math.round(people[x].burden * 100) / 100;
+    burdenElementList[x].textContent =
+      "$" + Math.round(people[x].burden * 100) / 100;
   }
 }
 
