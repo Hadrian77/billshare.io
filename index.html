@@ -8,49 +8,79 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <script src="index.js"></script>
-
     <header></header>
 
     <main>
       <div class="bills">
         <ul id="billList">
-          <li><input type="number" class="bill1" /></li>
-          <li><input type="number" class="bill2" /></li>
-          <li><input type="number" class="bill3" /></li>
-          <li><input type="number" class="bill4" /></li>
-          <li><input type="number" class="bill5" /></li>
-          <li><input type="number" class="bill6" /></li>
-          <li><input type="number" class="bill7" /></li>
-          <li><input type="number" class="bill8" /></li>
+          <li><input type="number" class="bill" value="10" /></li>
+          <li><input type="number" class="bill" value="10" /></li>
+          <li><input type="number" class="bill" value="10" /></li>
+          <li><input type="number" class="bill" value="10" /></li>
+          <li><input type="number" class="bill" value="10" /></li>
+          <li><input type="number" class="bill" value="10" /></li>
+          <li><input type="number" class="bill" value="10" /></li>
+          <li><input type="number" class="bill" value="10" /></li>
         </ul>
       </div>
 
       <div class="person1">
         <label for="income1">Person 1</label>
-        <input type="number" name="income1" />
-        <output name="burden1" for="income1"></output>
+        <input
+          type="number"
+          class="income"
+          name="income1"
+          id="income1"
+          value="0"
+        />
+        <output name="burden1" class="burden" for="income1">0</output>
       </div>
       <div class="person2">
         <label for="income2">Person 2</label>
-        <input type="number" name="income2" />
-        <output name="burden2" for="income2"></output>
+        <input
+          type="number"
+          class="income"
+          name="income2"
+          id="income2"
+          value="0"
+        />
+        <output name="burden2" class="burden" for="income2">0</output>
       </div>
       <div class="person3">
         <label for="income3">Person 3</label>
-        <input type="number" name="income3" />
-        <output name="burden3" for="income3"></output>
+        <input
+          type="number"
+          class="income"
+          name="income3"
+          id="income3"
+          value="0"
+        />
+        <output name="burden3" class="burden" for="income3">0</output>
       </div>
       <div class="person4">
         <label for="income4">Person 4</label>
-        <input type="number" name="income4" />
-        <output name="burden4" for="income4"></output>
+        <input
+          type="number"
+          class="income"
+          name="income4"
+          id="income4"
+          value="0"
+        />
+        <output name="burden4" class="burden" for="income4">0</output>
       </div>
       <div class="person5">
         <label for="income5">Person 5</label>
-        <input type="number" name="income5" />
-        <output name="burden5" for="income5"></output>
+        <input
+          type="number"
+          class="income"
+          name="income5"
+          id="income5"
+          value="0"
+        />
+        <output name="burden5" class="burden" for="income5">0</output>
       </div>
     </main>
+
+    <script src="index.js"></script>
   </body>
 </html>
