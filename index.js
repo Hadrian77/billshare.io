@@ -1,6 +1,6 @@
 "use strict";
 // Models
-class Person {
+class Payer {
   constructor(element, totalincome) {
     (this.income = element.value),
       (this.incomeShare = this.income / totalincome),
@@ -15,22 +15,25 @@ class Bill {
 }
 
 //Get and Store Info
-let billElementList = document.querySelectorAll(".bill");
+let costElementList = document.querySelectorAll(".cost");
 let incomeElementList = document.querySelectorAll(".income");
 let burdenElementList = document.querySelectorAll(".burden");
 
-function createBills() {
+//Function that initializes Bill objects and returns an array of all newly created bills
+function fetchBills() {
   let bills = [];
 
-  for (let billElement of billElementList) {
+  for (let billElement of costElementList) {
     bills.push(new Bill(billElement));
+    console.log(billElement);
   }
 
   return bills;
 }
 
-function createPeople() {
-  let people = [];
+//Function that initializes Payer objects and returns an array of all newly created payers
+function fetchPayers() {
+  let payers = [];
   let total = 0;
 
   for (let incomeElement of incomeElementList) {
@@ -38,41 +41,50 @@ function createPeople() {
   }
 
   for (let incomeElement of incomeElementList) {
-    people.push(new Person(incomeElement, total));
+    payers.push(new Payer(incomeElement, total));
+    console.log("Income Value:" + incomeElement.value);
   }
 
-  return people;
+  return payers;
 }
 
-function displayFinancials(people) {
-  //let billElementList = document.querySelectorAll(".bill");
-  console.log(burdenElementList);
-
+// Function that updates the burden/output text content for each payer
+function displayFinancials(payers) {
   for (let x = 0; x < burdenElementList.length; x++) {
-    console.log(people[x].burden);
-    burdenElementList[x].textContent =
-      "$" + Math.round(people[x].burden * 100) / 100;
-  }
-}
+    console.log(payers[x].burden);
 
-function calculate(bills, people) {
-  for (let bill of bills) {
-    for (let person of people) {
-      person.burden += bill.cost * person.incomeShare;
+    if (isNaN(payers[x].burden) || payers[x].income == 0) {
+      burdenElementList[x].textContent = "";
+    } else if (payers[x].burden > payers[x].income) {
+      burdenElementList[x].textContent = "Need more Income";
+    } else {
+      burdenElementList[x].textContent =
+        "Pay: $" + Math.round(payers[x].burden * 100) / 100;
     }
   }
 }
 
-let people = createPeople();
-let bills = createBills();
+/* Function to be called to calculate billshare each time any values are changed.
+Currently creates full arrays of new Bill and Payer Objects to achieve this, this isn't optimal for memory/performance purposes
+*/
+function calculate(bills, payers) {
+  for (let bill of bills) {
+    for (let Payer of payers) {
+      Payer.burden += bill.cost * Payer.incomeShare;
+    }
+  }
+}
 
-calculate(bills, people);
+let payers = fetchPayers();
+let bills = fetchBills();
+
+calculate(bills, payers);
 
 let mainElement = document.querySelector("main");
 
 mainElement.addEventListener("change", function () {
-  const people = createPeople();
+  const payers = fetchPayers();
 
-  calculate(createBills(), people);
-  displayFinancials(people);
+  calculate(fetchBills(), payers);
+  displayFinancials(payers);
 });
